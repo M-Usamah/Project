@@ -60,6 +60,7 @@ class gui:
         self.contactFrame = Frame(detailFrame, bg = 'pink', bd = 5, relief = RIDGE, height = 530 ,width = 900)
 
         self.Setting_Personal_Frame()
+
     def Setting_Personal_Frame(self): 
         #================================dividing the portion ========================================================
         Top_personal_Frame = Frame(self.personalFrame,bg = '#f1f1f1', height = 240 ,width = 900)
