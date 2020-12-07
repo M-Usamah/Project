@@ -1,10 +1,12 @@
 from tkinter import *
+from sqlite3 import dbapi2 as sqlite
 class gui:
     
     def __init__(self,frame):
         frame.state("zoomed")
         root.title("Updating Employees Record")
-    #     pass
+    #     self.setup_window(frame)
+    # #     pass
     # def setup_window(self, frame):
         fullwindow = Frame(frame, bg='#5f5f5f')
         fullwindow.pack(fill = BOTH, expand = 1)
@@ -60,7 +62,6 @@ class gui:
         self.contactFrame = Frame(detailFrame, bg = 'pink', bd = 5, relief = RIDGE, height = 530 ,width = 900)
 
         self.Setting_Personal_Frame()
-
     def Setting_Personal_Frame(self): 
         #================================dividing the portion ========================================================
         Top_personal_Frame = Frame(self.personalFrame,bg = '#f1f1f1', height = 240 ,width = 900)
@@ -86,8 +87,8 @@ class gui:
         firstName_Label.pack(side = LEFT)
         firstName_Right_frame = Frame(firstName_frame,bg = '#f1f1f1',width = 220)
         firstName_Right_frame.pack(side = LEFT)
-        firstName_Entry = Entry(firstName_Right_frame,width = 35)
-        firstName_Entry.pack(side = LEFT)
+        self.firstName_Entry = Entry(firstName_Right_frame,width = 35)
+        self.firstName_Entry.pack(side = LEFT)
 
         secondName_frame = Frame(setting_Name_Frame,bg = '#f1f1f1',width = 440)
         secondName_frame.pack(side = TOP, fill = BOTH)
@@ -97,8 +98,8 @@ class gui:
         secondName_Label.pack(side = LEFT)
         secondName_Right_frame = Frame(secondName_frame,bg = '#f1f1f1',width = 225)
         secondName_Right_frame.pack(side = LEFT)
-        secondName_Entry = Entry(secondName_Right_frame,width = 35)
-        secondName_Entry.pack(side = LEFT, padx= 19)
+        self.secondName_Entry = Entry(secondName_Right_frame,width = 35)
+        self.secondName_Entry.pack(side = LEFT, padx= 19)
 
         middleName_frame = Frame(setting_Name_Frame,bg = '#f1f1f1',width = 440)
         middleName_frame.pack(side = TOP, fill = BOTH)
@@ -108,8 +109,8 @@ class gui:
         middleName_Label.pack(side = LEFT)
         middleName_Right_frame = Frame(middleName_frame,bg = '#f1f1f1',width = 225)
         middleName_Right_frame.pack(side = LEFT )
-        middleName_Entry = Entry(middleName_Right_frame,width = 35)
-        middleName_Entry.pack(side = LEFT,padx = 15)
+        self.middleName_Entry = Entry(middleName_Right_frame,width = 35)
+        self.middleName_Entry.pack(side = LEFT,padx = 15)
 
         lasteName_frame = Frame(setting_Name_Frame,bg = '#f1f1f1',width = 440)
         lasteName_frame.pack(side = TOP, fill = BOTH)
@@ -119,8 +120,8 @@ class gui:
         lasteName_Label.pack(side = LEFT)
         lasteName_Right_frame = Frame(lasteName_frame,bg = '#f1f1f1',width = 225)
         lasteName_Right_frame.pack(side = LEFT)
-        lasteName_Entry = Entry(lasteName_Right_frame,width = 35)
-        lasteName_Entry.pack(side = LEFT,padx = 3)
+        self.lasteName_Entry = Entry(lasteName_Right_frame,width = 35)
+        self.lasteName_Entry.pack(side = LEFT,padx = 3)
 
         aggBottom_name_Frame=Frame(setting_Name_Frame,bg = '#f1f1f1',width = 440, height = 70)
         aggBottom_name_Frame.pack(side =TOP, fill = BOTH)
@@ -140,8 +141,8 @@ class gui:
         gender_Label.pack(side = LEFT)
         gender_Right_frame = Frame(gender_frame,bg = '#f1f1f1',width = 225)
         gender_Right_frame.pack(side = LEFT)
-        gender_Entry = Entry(gender_Right_frame,width = 35)
-        gender_Entry.pack(side = LEFT)
+        self.gender_Entry = Entry(gender_Right_frame,width = 35)
+        self.gender_Entry.pack(side = LEFT)
 
         age_frame = Frame(setting_Age_Frame,bg = '#f1f1f1',width = 440)
         age_frame.pack(side = TOP, fill = BOTH)
@@ -151,8 +152,8 @@ class gui:
         age_Label.pack(side = LEFT)
         age_Right_frame = Frame(age_frame,bg = '#f1f1f1',width = 225)
         age_Right_frame.pack(side = LEFT)
-        age_Entry = Entry(age_Right_frame,width = 35)
-        age_Entry.pack(side = LEFT,padx = 20)
+        self.age_Entry = Entry(age_Right_frame,width = 35)
+        self.age_Entry.pack(side = LEFT,padx = 20)
 
         religious_frame = Frame(setting_Age_Frame,bg = '#f1f1f1',width = 440)
         religious_frame.pack(side = TOP, fill = BOTH)
@@ -162,8 +163,8 @@ class gui:
         religious_Label.pack(side = LEFT)
         religious_Right_frame = Frame(religious_frame,bg = '#f1f1f1',width = 225)
         religious_Right_frame.pack(side = LEFT)
-        religious_Entry = Entry(religious_Right_frame,width = 35)
-        religious_Entry.pack(side = LEFT)
+        self.religious_Entry = Entry(religious_Right_frame,width = 35)
+        self.religious_Entry.pack(side = LEFT)
 
         nationalaty_frame = Frame(setting_Age_Frame,bg = '#f1f1f1',width = 440)
         nationalaty_frame.pack(side = TOP, fill = BOTH)
@@ -173,8 +174,8 @@ class gui:
         nationalaty_Label.pack(side = LEFT)
         nationalaty_Right_frame = Frame(nationalaty_frame,bg = '#f1f1f1',width = 225)
         nationalaty_Right_frame.pack(side = LEFT)
-        nationalaty_Entry = Entry(nationalaty_Right_frame,width = 35)
-        nationalaty_Entry.pack(side = LEFT,padx = 1)
+        self.nationalaty_Entry = Entry(nationalaty_Right_frame,width = 35)
+        self.nationalaty_Entry.pack(side = LEFT,padx = 1)
 
         maritalStatus_frame = Frame(setting_Age_Frame,bg = '#f1f1f1',width = 440)
         maritalStatus_frame.pack(side = TOP, fill = BOTH)
@@ -184,8 +185,8 @@ class gui:
         maritalStatus_Label.pack(side = LEFT)
         maritalStatus_Right_frame = Frame(maritalStatus_frame,bg = '#f1f1f1',width = 225)
         maritalStatus_Right_frame.pack(side = LEFT)
-        maritalStatus_Entry = Entry(maritalStatus_Right_frame,width = 35)
-        maritalStatus_Entry.pack(side = LEFT,padx = 10)
+        self.maritalStatus_Entry = Entry(maritalStatus_Right_frame,width = 35)
+        self.maritalStatus_Entry.pack(side = LEFT,padx = 10)
         
         bloodgroup_frame = Frame(setting_Age_Frame,bg = '#f1f1f1',width = 440)
         bloodgroup_frame.pack(side = TOP, fill = BOTH)
@@ -195,8 +196,8 @@ class gui:
         bloodgroup_Label.pack(side = LEFT)
         bloodgroup_Right_frame = Frame(bloodgroup_frame,bg = '#f1f1f1',width = 225)
         bloodgroup_Right_frame.pack(side = LEFT)
-        bloodgroup_Entry = Entry(bloodgroup_Right_frame,width = 35)
-        bloodgroup_Entry.pack(side = LEFT,padx = 4)
+        self.bloodgroup_Entry = Entry(bloodgroup_Right_frame,width = 35)
+        self.bloodgroup_Entry.pack(side = LEFT,padx = 4)
         #==========================Setting relative frame==============
         setting_Relative_Frame = Frame(Center_Presonal_Frame, bg = "#F1F1F1",width = 890)
         setting_Relative_Frame.pack(side = LEFT,fill = BOTH, padx = 240)
@@ -215,8 +216,8 @@ class gui:
         kin_Label.pack(side = LEFT)
         kin_Right_frame = Frame(kin_frame,bg = '#f1f1f1',width = 225)
         kin_Right_frame.pack(side = LEFT)
-        kin_Entry = Entry(kin_Right_frame,width = 40)
-        kin_Entry.pack(side = LEFT,padx = 18)
+        self.kin_Entry = Entry(kin_Right_frame,width = 40)
+        self.kin_Entry.pack(side = LEFT,padx = 18)
 
         education_frame = Frame(Relative_Frame,bg = '#f1f1f1',width = 890)
         education_frame.pack(side = TOP, fill = BOTH)
@@ -226,8 +227,8 @@ class gui:
         education_Label.pack(side = LEFT)
         education_Right_frame = Frame(education_frame,bg = '#f1f1f1',width = 225)
         education_Right_frame.pack(side = LEFT)
-        education_Entry = Entry(education_Right_frame,width = 40)
-        education_Entry.pack(side = LEFT,padx = 12)
+        self.education_Entry = Entry(education_Right_frame,width = 40)
+        self.education_Entry.pack(side = LEFT,padx = 12)
 
         qualification_frame = Frame(Relative_Frame,bg = '#f1f1f1',width = 890)
         qualification_frame.pack(side = TOP, fill = BOTH)
@@ -237,8 +238,8 @@ class gui:
         qualification_Label.pack(side = LEFT)
         qualification_Right_frame = Frame(qualification_frame,bg = '#f1f1f1',width = 225)
         qualification_Right_frame.pack(side = LEFT)
-        qualification_Entry = Entry(qualification_Right_frame,width = 40)
-        qualification_Entry.pack(side = LEFT,padx = 21)
+        self.qualification_Entry = Entry(qualification_Right_frame,width = 40)
+        self.qualification_Entry.pack(side = LEFT,padx = 21)
 
         profession_frame = Frame(Relative_Frame,bg = '#f1f1f1',width = 890)
         profession_frame.pack(side = TOP, fill = BOTH)
@@ -248,8 +249,8 @@ class gui:
         profession_Label.pack(side = LEFT)
         profession_Right_frame = Frame(profession_frame,bg = '#f1f1f1',width = 225)
         profession_Right_frame.pack(side = LEFT)
-        profession_Entry = Entry(profession_Right_frame,width = 40)
-        profession_Entry.pack(side = LEFT,padx = 8)
+        self.profession_Entry = Entry(profession_Right_frame,width = 40)
+        self.profession_Entry.pack(side = LEFT,padx = 8)
 
         hobbies_frame = Frame(Relative_Frame,bg = '#f1f1f1',width = 890)
         hobbies_frame.pack(side = TOP, fill = BOTH)
@@ -259,8 +260,8 @@ class gui:
         hobbies_Label.pack(side = LEFT)
         hobbies_Right_frame = Frame(hobbies_frame,bg = '#f1f1f1',width = 225)
         hobbies_Right_frame.pack(side = LEFT)
-        hobbies_Entry = Entry(hobbies_Right_frame,width = 40)
-        hobbies_Entry.pack(side = LEFT,padx = 1)
+        self.hobbies_Entry = Entry(hobbies_Right_frame,width = 40)
+        self.hobbies_Entry.pack(side = LEFT,padx = 1)
 
         agg_relative_bottom_Frame = Frame(Relative_Frame,bg = '#f1f1f1',height = 40)
         agg_relative_bottom_Frame.pack(side = TOP)
@@ -268,23 +269,48 @@ class gui:
         #=======================buttons======================================
         self.snButton(self.Bottom_personal_Frame,self.addressFrame)        
 
-        # self.bsnButton(self.Bottom_personal_Frame)
+    def saveperson(self):
+        
+        firstName = self.firstName_Entry.get()
+        secondName = self.secondName_Entry.get()
+        middleName = self.middleName_Entry.get()
+        lastName = self.lasteName_Entry.get()
+        gender = self.gender_Entry.get()
+        age = self.age_Entry.get()
+        religious = self.religious_Entry.get()
+        maritalStatus = self.maritalStatus_Entry.get()
+        bloodGroup = self.bloodgroup_Entry.get()
+        relative = self.kin_Entry.get()
+        education = self.education_Entry.get()
+        qualifation = self.qualification_Entry.get()
+        profession = self.profession_Entry.get()
+        hobbies = self.hobbies_Entry.get()
+        print(firstName,secondName,middleName,lastName,gender,age,religious,maritalStatus,bloodGroup,relative,education,qualifation,profession,hobbies,sep = "\n")
+        f = open("personal.txt","w")
+        data = [firstName,'\n',secondName,'\n',middleName,'\n',lastName,'\n',gender,'\n',age,'\n',religious,'\n',maritalStatus,'\n',bloodGroup,'\n',relative,'\n',education,'\n',qualifation,'\n',profession,'\n',hobbies]
+        for inRange in data:
+            f.write(str(inRange))
+        f.close()
+
+        # cur = sqlite.connect("Employee.db")
+        # cur.execute("CREATE TABLE IF NOT EXISTS employee (firstname , name text, fname text, mname text, \ address text, mobno integer,email text, dob integer, gender text)")
+
 
     def snButton(self,parrent,next_frame):
         setting_Button_Frame = Frame(self.Bottom_personal_Frame, bg = "#f1f1f1",height = 50,width = 890)
         setting_Button_Frame.pack(side = TOP)
 
-        save_button = Button(setting_Button_Frame, text = 'Save',width = 10)
+        save_button = Button(setting_Button_Frame, text = 'Save',width = 10, command = lambda:self.saveperson())
         save_button.pack(side = LEFT,padx= 350)
 
         Next_button = Button(setting_Button_Frame, text = 'Next',width = 10,command = lambda:self.display_Frames(next_frame))
         Next_button.pack(side = RIGHT,padx= 10)
     
     def bsnButton(self,parrent,back_frame,next_frame):    
-        setting_Button_Frame = Frame(parrent, bg = "#f1f1f1",height = 50,width = 890,command = lambda:self.display_Frames(back_frame))
+        setting_Button_Frame = Frame(parrent, bg = "#f1f1f1",height = 50,width = 890)
         setting_Button_Frame.pack(side = TOP)
         
-        back_button=Button(setting_Button_Frame, text = 'Back',width = 10)
+        back_button=Button(setting_Button_Frame, text = 'Back',width = 10,command = lambda:self.display_Frames(back_frame))
         back_button.pack(side = LEFT,padx= 10)
 
         save_button = Button(setting_Button_Frame, text = 'Save',width = 10)
@@ -292,6 +318,17 @@ class gui:
 
         Next_button = Button(setting_Button_Frame, text = 'Next',width = 10,command = lambda:self.display_Frames(next_frame))
         Next_button.pack(side = RIGHT,padx= 10)
+
+    def bsButton(self,parrent,back_frame):
+        setting_Button_Frame = Frame(parrent, bg = "#f1f1f1",height = 50,width = 890)
+        setting_Button_Frame.pack(side = TOP)
+        
+        back_button=Button(setting_Button_Frame, text = 'Back',width = 10,command = lambda:self.display_Frames(back_frame))
+        back_button.pack(side = LEFT,padx= 10)
+
+        save_button = Button(setting_Button_Frame, text = 'Save',width = 10)
+        save_button.pack(side = LEFT,padx= 300)
+
     def display_Frames(self,frames):
         self.personalFrame.forget()
         self.addressFrame.forget()
@@ -303,6 +340,10 @@ class gui:
         frames.tkraise()
         frames.pack( padx = 5,pady = 5)
 
+    # def file_handling(self,filename,save):
+    #     f = open(filename)
+    #     f.write(save)
+    #     f.close()
 
 
 
